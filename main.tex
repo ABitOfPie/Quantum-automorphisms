@@ -1,0 +1,39 @@
+% LaTeX Notetaking Template for the 2019 Pan-Canadian Self-Organizing Conference on Machine Learning (PC-SOCMLx)
+% Template by David Madras, inspired by Meltem Atay's template for the 2018 SOCML
+
+\documentclass{book}
+\usepackage[utf8]{inputenc}
+\usepackage{enumitem}
+\usepackage{dsfont}
+\usepackage{commands}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{amsfonts}
+\usepackage{commands}
+\usepackage{tikz-cd}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Theorem enviroments
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem*{remark}{Remark}
+\newtheorem{definition}[theorem]{Definition}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\title{Introduction to Quantum Groups of Automorphisms}
+\author{Mario Paz}
+\date{November 2024}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{document}
+
+\maketitle
+\tableofcontents
+
+\chapter*{Abstract}
+These notes are made with the (initial) purpose of understanding the required theory to work on quantum groups of automorphisms of matroids. I may constantly find myself rambling on about topics which are not totally necessary for said purpose and I may or may not eventually remove these parts. For now, these reflect my (probably messy) path on understanding topics such as quantum groups, groups of automorphisms and $\cs$-algebras, among other stuff. I will \emph{try} to make this a (mostly) self-contained work, \emph{but I won't be making any promises of such thing}. c:
+
+Also, this are mostly based on several papers I've came across and I will be listing them somewhere in these notes, eventually.
+
+\input{chapters/chap1.tex}
+
+\end{document}

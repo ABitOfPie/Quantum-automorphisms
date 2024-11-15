@@ -1,0 +1,38 @@
+- Linear associative algebra
+- Banach space
+- Complete Banach space
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\section{$C^{*}$-algebras}
+
+Let $\mathcal{A}$ be a linear associative algebra over the complex field $\mathbb{C}$.
+\begin{definition}
+    We say $\mathcal{A}$ is a \textbf{normed algebra} if, for any $x \in \mathcal{A}$, there is a real number $||x||$ such that:
+    \begin{enumerate}
+        \item $||x|| > 0$, and $||x|| = 0||$ if and only if $x = 0$;
+        \item $||x + y|| \leq ||x|| + ||y||$ for any $y \in \mathcal{A}$;
+        \item $||\lambda x|| = |\lambda|\ ||x||$ for any $\lambda \in \mathbb{C}$;
+        \item $||xy|| \leq ||x||\ ||y||$ for any $y \in \mathcal{A}$.
+    \end{enumerate}
+    We call $||x||$ the \textbf{norm} of $x$.
+    Moreover, if $\mathcal{A}$ is complete with respect to the norm $||\cdot||$ (that is, $\mathcal{A}$ with the given norm is also a Banach space), then it is called a \textbf{Banach algebra}.
+\end{definition}
+
+\begin{definition}
+    A mapping $*:\A \to \A$ (we write $x^{*}$ for $*(x)$) is called an \textbf{involution} given the following conditions are satisfied:
+    \begin{enumerate}
+        \item $(x^{*})^{*} = x$;
+        \item $(x + y)^{*} = x^{*} + y^{*}$;
+        \item $(xy)^{*} = y^{*}x^{*}$;
+        \item $(\lambda x)^{*} = \overline{\lambda}x^{*}$.
+    \end{enumerate}
+    An algebra with an involution is called a \textbf{$^{*}$-algebra}.
+\end{definition}
+
+\begin{definition}
+    A Banach $^{*}$-algebra $\mathcal{A}$ is called a \textbf{$C^{*}$-algebra} if for any $x \in \mathcal{A}$ we have $||x^{*}x|| = ||x||^{2}$.  
+\end{definition}
+
+\begin{definition}
+        The topology defined by the norm $||\cdot||$ on a $C^{*}$-algebra $\A$ is called the \textbf{uniform topology}. Given a subset $V \subseteq \A$, we say $V$ is \textbf{self-adjoint} if $x \in V$ implies $x^{*} \in V$. A self-adjoint, uniformly closed subalgebra of $\A$ is also a $C^{*}$-algebra and it is said to be a \textbf{$C^{*}$-subalgebra} of $\A$.
+\end{definition}

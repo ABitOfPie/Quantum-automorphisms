@@ -1,0 +1,102 @@
+\chapter{Quantum groups}
+
+We'll start by exploring quantum groups independently from groups of automorphisms of graphs or matroids. We'll explore two different approaches: the purely algebraic approach that begins with the definition of Hopf algebras and an approach aided by the theory of functional analysis using $\cs$-algebras.
+
+Once we adventure ourselves into the works of quantum groups of automorphisms of matroids we may focus mostly on the $\cs$-algebras approach, however we will introduce both approaches to help further understanding of these topics.
+
+Before we begin, let us introduce some useful notation attributed to Sweedler. For $\A$ a unital algebra and $R \in \A\tensor\A$, $R$ admits a representation in the form of the finite sum $\sum\alpha_{i}\tensor\beta_{i}$ for $\alpha_{i},\beta_{i}\in\A$. We can then extend $R$ to an element of $\A\tensor\A\tensor\A$ by tensoring with the unit $1 \in \A$. These, in Sweedler's notation, are
+\begin{equation}
+\begin{array}{c}
+    R_{12} := \sum_{i}\alpha_{i}\tensor\beta_{i}\tensor1,   \\\\
+    R_{13} := \sum_{i}\alpha_{i}\tensor1\tensor\beta_{i},   \\\\
+    R_{23} := \sum_{i}1\tensor\alpha_{i}\tensor\beta_{i}.
+\end{array}
+\end{equation}
+More generally, we'll denote the extension of $R$ to $\A^{\tensor n}$ as $R_{ij}$, where $R$ ``is the $i$th and $j$th component of $R$''.
+
+\section{Hopf algebras}
+
+Given $\A$ is an associative algebra with unit over a field $K$, one can consider the multiplication mapping $\mu:\A\tensor\A\to\A$ and the linear mapping defined by the unit $\eta:K\to\A$ with a nice associative behaviour that can be represented by a commutative diagram. Considering this, we define an \textbf{algebra} as a vector space over a field $K$ with an additional structure given by a pair of linear maps $(\mu,\eta)$ such that the following diagrams commutes:
+\[\begin{tikzcd}[cramped,sep=tiny]
+	&& {\A \otimes \A \otimes \A} \\
+	&&&&&& {\A \otimes \A} &&&& {\A \otimes \A} \\
+	{\A \otimes \A} &&&& {\A \otimes \A} \\
+	&&&&&& {K \otimes \A} & {=} & \A && {\A \otimes K} & {=} & A \\
+	&& \A
+	\arrow["{\mu\otimes\mathrm{id}}"', from=1-3, to=3-1]
+	\arrow["{\mathrm{id}\otimes\mu}", from=1-3, to=3-5]
+	\arrow["\mu", from=2-7, to=4-9]
+	\arrow["\mu", from=2-11, to=4-13]
+	\arrow["\mu"', from=3-1, to=5-3]
+	\arrow["\mu", from=3-5, to=5-3]
+	\arrow["{\eta \otimes \mathrm{id}}", from=4-7, to=2-7]
+	\arrow["{\mathrm{id} \otimes \eta}", from=4-11, to=2-11]
+\end{tikzcd}\]
+
+Dually, we define a \textbf{coalgebra} $\C$ as a vector space over a field $K$ with an additional structure given by a pair of linear maps $(\Delta,\epsilon)$ such that the following diagram commutes:
+\[\begin{tikzcd}[cramped,sep=tiny]
+	&& {\C \otimes \C \otimes \C} \\
+	&&&&&& {\C \otimes \C} &&&& {\C \otimes \C} \\
+	{\C \otimes \C} &&&& {\C \otimes \C} \\
+	&&&&&& {K \otimes \C} & {=} & \C && {\C \otimes K} & {=} & \C \\
+	&& \C
+	\arrow["{\epsilon \otimes \mathrm{id}}"', from=2-7, to=4-7]
+	\arrow["{\mathrm{id} \otimes \epsilon}"', from=2-11, to=4-11]
+	\arrow["{\Delta\otimes\mathrm{id}}", from=3-1, to=1-3]
+	\arrow["{\mathrm{id}\otimes\Delta}"', from=3-5, to=1-3]
+	\arrow["\Delta"', from=4-9, to=2-7]
+	\arrow["\Delta"', from=4-13, to=2-11]
+	\arrow["\Delta", from=5-3, to=3-1]
+	\arrow["\Delta"', from=5-3, to=3-5]
+\end{tikzcd}\]
+
+A \textbf{bialgebra} $\A$($=\C$) is a vector space over a field $K$ with additional structure given by a quadruple of objects $(\mu,\eta,\Delta,\epsilon)$ such that both of the previous diagrams commute and, additionally, the following compatibility equations are verified: for all $g,h \in \A$,
+\begin{equation}
+    \Delta(hg) = \Delta(h)\Delta(g),\quad \Delta(1) = 1 \tensor 1,\quad \epsilon(hg) = \epsilon(h)\epsilon(g),\quad \epsilon(1) = 1.
+\end{equation}
+We call the linear maps $\mu$, $\eta$, $\Delta$ and $\epsilon$ the \textbf{multiplication}, \textbf{unit}, \textbf{comultiplication} and \textbf{counit} of the bialgebra, respectively. We also define the \textbf{convolution} of any two linear maps $f,g:\A\to\A$ by $f*g=\mu(f\tensor g)\Delta$. Under this definition, $*$ is not only associative but also has a neutral element, $\eta \circ \epsilon$.
+
+Thus, a bialgebra is both an algebra and a coalgebra (for us, it is always both associative and coassociative) such that the operations are \emph{well behaved} in some sense. Just as in the previous definition, we may refer to the bialgebra by $\A$ (or whatever notation we use for the vector space), but we are always considering it alongside the quadruple of linear maps. In this sense, the bialgebra is actually the tuple $(\A,\mu,\eta,\Delta,\epsilon)$.
+
+Now onto Hopf algebras. 
+\begin{definition}
+    A \textbf{Hopf algebra} is a bialgebra $(H,\mu,\eta,\Delta,\epsilon)$ over a field $K$ together with a linear map $S:H\to H$ (called the \textbf{antipode}) such that the following diagram commutes:
+    % https://q.uiver.app/#q=WzAsNyxbMCwyLCJIIl0sWzIsMCwiSCBcXG90aW1lcyBIIl0sWzIsNCwiSCBcXG90aW1lcyBIIl0sWzMsMiwiSyJdLFs0LDAsIkggXFxvdGltZXMgSCJdLFs0LDQsIkggXFxvdGltZXMgSCJdLFs2LDIsIkgiXSxbMCwxLCJcXERlbHRhIl0sWzAsMiwiXFxEZWx0YSIsMl0sWzAsMywiXFxlcHNpbG9uIl0sWzIsNSwiXFxpZCBcXG90aW1lcyBTIiwyXSxbMSw0LCJTIFxcb3RpbWVzIFxcaWQiXSxbNCw2LCJcXG11Il0sWzUsNiwiXFxtdSIsMl0sWzMsNiwiXFxldGEiXV0=
+    \[\begin{tikzcd}[cramped,sep=tiny]
+	&& {H \otimes H} && {H \otimes H} \\
+	\\
+	H &&& K &&& H \\
+	\\
+	&& {H \otimes H} && {H \otimes H}
+	\arrow["{S \otimes \id}", from=1-3, to=1-5]
+	\arrow["\mu", from=1-5, to=3-7]
+	\arrow["\Delta", from=3-1, to=1-3]
+	\arrow["\epsilon", from=3-1, to=3-4]
+	\arrow["\Delta"', from=3-1, to=5-3]
+	\arrow["\eta", from=3-4, to=3-7]
+	\arrow["{\id \otimes S}"', from=5-3, to=5-5]
+	\arrow["\mu"', from=5-5, to=3-7]
+    \end{tikzcd}\]
+    \end{definition}
+We consider the antipode for the tuple notation of a Hopf algebra, i.e. the Hopf algebra is the tuple $(H,\mu,\eta,\Delta,\epsilon,S)$ with the required conditions. Additionally, we'll be omitting the field over which the structure is defined, but unless stated otherwise, we'll consider the algebraic structures (algebras, coalgebras, bialgebras, etc.) to be defined over a field $K$.
+
+Put into words, a Hopf algebra is a bialgebra $(H,\mu,\eta,\Delta,\epsilon,S)$ in which the identity map $\id:H\to H$ is invertible for the convolution product and its inverse is the antipode $S$ (that is, $\id*S = S*\id = \eta\circ\epsilon$).
+
+\begin{definition}
+    A \textbf{quasitriangular Hopf algebra} (or braided Hopf algebra) is a Hopf algebra $(H,\mu,\eta,\Delta,\epsilon,S)$ together with an invertible element $R\in H\tensor H$ satisfaying the following three conditions:
+    \begin{enumerate}
+        \item $R\Delta(x)R^{-1} = (\tau \circ \Delta)(x)$ for all $x\in H$.
+        \item $(\Delta\tensor\id)(R)=R_{13}R_{23}$.
+        \item $(\id\tensor\Delta)(R)=R_{13}R_{12}$.
+    \end{enumerate}
+    Here, $\tau: H \tensor H \to H \tensor H$ is the linear map given by $\tau(x \tensor y) = y \tensor x$ for all $x,y \in H$. We call $R$ the \textbf{$R$-matrix} (also refered to as the \emph{universal $R$-matrix}).
+\end{definition}
+
+\section{The Yang-Baxter equation}
+
+The Yang-Baxter equation (or YBE, for short) is a consistency equation that first arose in the world of statistical mechanics but has showed its relevance in other areas such as quantum field theory, knot invariants, $\cs$-algebras, among others. In came up in the works of J. B. McGuire in 1964 and C. N. Yang in 1967. Specifically we focus our attention on the \emph{parameter-independent form} of the YBE. It states that if $\A$ is a unital associative algebra and $R \in \A\tensor A$, $R$ is said to be a solution to YBE if
+\begin{equation}    
+    R_{12}R_{13}R_{23} = R_{23}R_{13}R_{12}.
+\end{equation}
+
+One may readily check that the $R$-matrix of a Hopf algebra is, in fact, a solution to YBE. This is a 
